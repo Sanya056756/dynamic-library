@@ -10,12 +10,12 @@ Use [CMake](https://cmake.org/) and module [FetchContent](https://cmake.org/cmak
 include(FetchContent)
 
 FetchContent_Declare(
-    openssl-evp
-    GIT_REPOSITORY https://github.com/Sanya056756/openssl-evp.git
+    dynamic-library
+    GIT_REPOSITORY https://github.com/Sanya056756/dynamic-library
     GIT_TAG master
 )
 
-FetchContent_MakeAvailable(openssl-evp)
+FetchContent_MakeAvailable(dynamic-library)
 
 ...
 
