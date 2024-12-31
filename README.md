@@ -35,20 +35,15 @@ int main()
 {
     const char* libraryPath = "shared.dll"; // shared.so, shared.dylib ...
     const char* functionName = "hello";
+    std::string input = "Hello World!";
 
     DynamicLibrary library;
     
     if (!library.LoadDynamicLibrary(libraryPath))
-    {
-        std::cerr << "Failed to load dynamic library" << std::endl;
-        return 1;
-    }
+        throw std::runtime_error("Failed to load shared library");
 
-    if (!library.ExecuteFunction<void, std::string>(functionName, "Hello World!", nullptr))
-    {
-        std::cerr << "Failed to execute function in dynamic library" << std::endl;
-        return 1;
-    }
+    if (!library.ExecuteFunction<void, std::string>(functionName, input, nullptr))
+        throw std::runtime_error("Failed to execute function in shared library");
 }
 ```
 

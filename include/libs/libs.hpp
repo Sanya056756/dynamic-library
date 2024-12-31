@@ -1,5 +1,5 @@
-#ifndef PLUGINS_LIBS_H
-#define PLUGINS_LIBS_H
+#ifndef DYNAMIC_LIBS_H
+#define DYNAMIC_LIBS_H
 
 #include <type_traits>
 
@@ -8,7 +8,8 @@
 #   define LIBS_OS_WIN
 #elif defined(__linux__) || defined(__APPLE__)
 #   include <dlfcn.h>
-#   define LIBS_OS_UNIX
+#else
+#error Unknown OS
 #endif
 
 class DynamicLibrary
@@ -51,7 +52,7 @@ public:
         proc = reinterpret_cast<decltype(proc)>(func);
         #endif
 
-        if (func == nullptr)
+        if (!func)
             return false;
 
         bool isVoid = std::is_void<O>::value;
@@ -76,4 +77,4 @@ private:
     bool m_initialized;
 };
 
-#endif //PLUGINS_LIBS_H
+#endif //DYNAMIC_LIBS_H
